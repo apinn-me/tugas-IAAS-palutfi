@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daftar Akun Sopantify</title>
+  <link rel="stylesheet" href="./styles/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="icon" href="./img/rip (3).png">
+    <title>Sopantfy - Web Player: Music for everyone</title>
+</head>
+
+<body>
+  <div class="container">
+    <img src="./img/rip (3).png" alt="Spotify Logo" class="logo" />
+    <h1>Buat akun baru</h1>
+
+    <form id="registerForm">
+      <label for="email">Alamat email</label>
+      <input type="email" id="email" placeholder="nama@domain.com" required />
+
+      <label for="password">Kata Sandi</label>
+      <input type="password" id="password" placeholder="Minimal 6 karakter" minlength="6" required />
+
+      <label for="confirm-password">Konfirmasi Kata Sandi</label>
+      <input type="password" id="confirm-password" placeholder="Ketik ulang kata sandi" minlength="6" required />
+
+      <button type="submit" class="btn-green">Daftar</button>
+    </form>
+
+    <div class="divider"><span>atau</span></div>
+    <div class="social-buttons">
+      <button id="registerGoogleBtn" class="btn-social google">
+        <i class="fab fa-google"></i> Daftar dengan Google
+      </button>
+    </div>
+
+    <p class="login">Sudah punya akun? <a href="sign-in.html">Masuk di sini</a>.</p>
+
+    <footer>
+      <p class="note">This site is protected by reCAPTCHA and the Google <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.</p>
+    </footer>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+  <script>
+    // Konfigurasi Firebase (sama dengan di login)
+    const firebaseConfig = {
+      apiKey: "AIzaSyAmBmcMCcfEEOF-qnNUIdR7RWM-LJmUBVQ",
+      authDomain: "sopantfy.firebaseapp.com",
+      projectId: "sopantfy",
+      storageBucket: "sopantfy.appspot.com",
+      messagingSenderId: "782013037912",
+      appId: "1:782013037912:web:e6be4e3debf4700c7b792d"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    // Register dengan email dan password
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const confirmPassword = document.getElementById('confirm-password').value.trim();
+
+      if (password !== confirmPassword) {
+        alert('Kata sandi dan konfirmasi tidak cocok!');
+        return;
+      }
+
+      try {
+        // Buat akun baru
+        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+        const user = userCredential.user;
+
+        // Simpan data user baru ke Firestore
+        await db.collection('users').doc(user.uid).set({
+          email: user.email,
+          name: '',
+          nickname: '',
+          genre: '',
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+
+        alert('Pendaftaran berhasil! Silakan masuk.');
+        window.location.href = "sign-in.html";
+      } catch (error) {
+        alert('Gagal mendaftar: ' + error.message);
+      }
+    });
+
+    // Daftar dengan Google
+    document.getElementById('registerGoogleBtn').addEventListener('click', async () => {
+      try {
+        const result = await auth.signInWithPopup(provider);
+        const user = result.user;
+
+        // Cek dan simpan jika belum ada
+        const userDoc = await db.collection('users').doc(user.uid).get();
+        if (!userDoc.exists) {
+          await db.collection('users').doc(user.uid).set({
+            email: user.email,
+            name: user.displayName || '',
+            nickname: '',
+            genre: '',
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+          });
+        }
+
+        alert('Berhasil mendaftar dengan Google!');
+        window.location.href = "beranda.html";
+      } catch (error) {
+        alert('Gagal daftar dengan Google: ' + error.message);
+      }
+    });
+  </script>
+</body>
+
+</html>

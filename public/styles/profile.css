@@ -1,0 +1,107 @@
+/* Reset dasar */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background-color: #000000;
+}
+
+.logo {
+  height: 60px
+}
+
+.menu a {
+  color: #ffffff;
+  margin-left: 20px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.menu .divider {
+  margin: 0 10px;
+  color: #555;
+}
+
+/* Banner */
+.banner {
+  background-color: #8e44ad;
+  padding: 20px 32px;
+}
+
+.banner-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.banner-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+}
+
+.banner-text h3 {
+  margin: 0;
+  font-size: 18px;
+  color: white;
+}
+
+.banner-text p {
+  margin: 5px 0 10px;
+  font-size: 14px;
+}
+
+.btn {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 8px 16px;
+  font-weight: bold;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* Konten utama */
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.section h2, .section h3 {
+  border-bottom: 1px solid #333;
+  padding-bottom: 8px;
+}
+
+.card {
+  background-color: #1e1e1e;
+  margin: 10px 0 30px;
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card a {
+  color: #daffe7;
+  text-decoration: none;
+  margin: 10px 0;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.2s ease;
+}
+
+.card a:hover {
+  color: #1ed760;
+}

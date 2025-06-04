@@ -1,0 +1,184 @@
+/* Body utama */
+body {
+  margin: 0;
+  background-color: #121212; /* Warna latar belakang gelap */
+  font-family: Arial, sans-serif;
+  color: white; /* Teks berwarna putih */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Memastikan halaman memenuhi tinggi layar */
+}
+
+/* Container utama */
+.container {
+  text-align: center; /* Menyusun semua konten di tengah */
+  max-width: 400px;
+  width: 90%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Logo */
+.logo {
+  width: 100px; /* Menentukan ukuran logo */
+  margin-bottom: 20px;
+}
+
+/* Judul */
+h1 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Form Daftar */
+form {
+  display: flex;
+  flex-direction: column; /* Menyusun input secara vertikal */
+  gap: 10px; /* Jarak antar input */
+}
+
+/* Styling untuk input email, password, dan text */
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="tel"] {
+  padding: 12px;
+  border: none;
+  border-radius: 5px; /* Sudut input yang membulat */
+  outline: none; /* Menghilangkan garis biru ketika fokus */
+  margin-bottom: 10px; /* Jarak antar input */
+}
+
+/* Tombol Hijau */
+.btn-green {
+  background-color: #1ed760; /* Warna hijau */
+  color: black;
+  padding: 12px;
+  border: none;
+  border-radius: 30px; /* Sudut tombol yang membulat */
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn-green:hover {
+  background-color: #16b14d;
+}
+
+/* Tombol Toggle (untuk memilih email atau nomor telepon) */
+#togglePhone {
+  background: none;
+  border: none;
+  color: #1db954;
+  margin-top: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Pembatas antar elemen */
+.divider {
+  margin: 20px 0;
+  position: relative;
+  text-align: center;
+}
+
+.divider span {
+  background-color: #121212;
+  padding: 0 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background-color: #444;
+  left: 0;
+  z-index: 0;
+}
+
+/* Bagian Nomor Telepon */
+#phoneSection {
+  display: none; /* Menyembunyikan form telepon saat pertama kali */
+  margin-top: 20px;
+}
+
+#otpSection {
+  display: none; /* Menyembunyikan OTP section saat pertama kali */
+  margin-top: 20px;
+}
+
+button[type="button"] {
+  padding: 12px;
+  border: none;
+  border-radius: 30px;
+  background-color: #1ed760;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
+
+button[type="button"]:hover {
+  background-color: #16b14d;
+}
+
+/* Tombol Sosial Media */
+.social-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-social {
+  padding: 12px;
+  border: 1px solid #fff;
+  border-radius: 30px;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+  width: 100%;
+}
+
+.btn-social:hover {
+  background-color: white;
+  color: #f06969;
+}
+
+/* Styling untuk bagian login */
+.login {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.login a {
+  color: #1db954;
+  text-decoration: none;
+}
+
+.login a:hover {
+  text-decoration: underline;
+} 
+
+/* Catatan di bagian footer */
+.note {
+  font-size: 12px;
+  color: #b3b3b3;
+  margin-top: 30px;
+}
+
+footer a {
+  color: #1db954;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
